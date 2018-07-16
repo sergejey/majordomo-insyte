@@ -1,0 +1,87 @@
+
+<!-- table zwave_devices search -->
+<div>
+ [ <a href="#" onClick="$('#api_settings').toggle();return false;"><#LANG_SETUP#></a> ]
+</div>
+<div style="display:none" id='api_settings'>
+&nbsp;
+<form action="?" method="post" enctype="multipart/form-data" name="frmEdit" class="form-horizontal">
+<fieldset>
+<div class="form-group">
+ <label class="control-label"[#if ERR_API_URL#] style="color:red;font-weight:bold"[#endif#]>
+ Gateway Address:
+ (*)
+ </label>
+ <div class="controls"><input type="text" name="api_url" value="[#API_URL#]" class="input"></div>
+</div>
+    <div class="form-group">
+        <label class="control-label"[#if ERR_API_URL#] style="color:red;font-weight:bold"[#endif#]>
+            Gateway Port:
+            (*)
+        </label>
+        <div class="controls"><input type="text" name="api_port" value="[#API_PORT#]" class="input"></div>
+    </div>
+<div class="form-actions">
+<button type="submit" name="subm" value="Submit" class="btn btn-primary"><#LANG_UPDATE#></button>
+<input type="hidden" name="view_mode" value="update_settings">
+<input type="hidden" name="mode" value="update">
+</div>
+</fieldset>
+</form>
+</div>
+&nbsp;
+ <!-- action usual -->
+ [#if DATA_SOURCE="insytedevices" || DATA_SOURCE=""#]
+ <!-- table insytedevices search -->
+ [#if VIEW_MODE="search_insytedevices" || VIEW_MODE=""#]
+  [#inc insytedevices_search_admin.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table insytedevices search -->
+ <!-- table insytedevices edit -->
+ [#if VIEW_MODE="edit_insytedevices"#]
+   [#if ID!=""#]
+   [#if TITLE!=""#]<h4>[#TITLE#] (Addr: [#ADDRESS#])</h4>[#endif TITLE#]
+<ul class="nav nav-tabs">
+  <li[#if TAB=""#] class="active"[#endif#]>
+   <a href="?data_source=<#DATA_SOURCE#>&view_mode=<#VIEW_MODE#>&id=<#ID#>&tab="><#LANG_GENERAL#></a>
+  </li>
+  <li[#if TAB="data"#] class="active"[#endif#]>
+   <a href="?data_source=<#DATA_SOURCE#>&view_mode=<#VIEW_MODE#>&id=<#ID#>&tab=data">&#060#LANG_DATA#&#062</a>
+  </li>
+</ul>
+&nbsp;<br/>
+   [#endif ID#]
+   [#if TAB=""#]
+    [#inc insytedevices_edit_default.html#]
+   [#endif TAB#]
+   [#if TAB="data"#]
+    [#inc insytedevices_edit_data.html#]
+   [#endif TAB#]
+ [#endif VIEW_MODE#]
+ <!-- / table insytedevices edit -->
+ <!-- table insytedevices view --> 
+ [#if VIEW_MODE="view_insytedevices"#]
+   [#if TAB=""#]
+    [#inc insytedevices_view_default.html#]
+   [#endif TAB#]
+ [#endif VIEW_MODE#]
+ <!-- / table insytedevices view -->
+ [#endif DATA_SOURCE#]
+ <!-- action usual -->
+ [#if DATA_SOURCE="insytecommands"#]
+ <!-- table insytecommands search -->
+ [#if VIEW_MODE="search_insytecommands" || VIEW_MODE=""#]
+  [#inc insytecommands_search_admin.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table insytecommands search -->
+ <!-- table insytecommands edit -->
+ [#if VIEW_MODE="edit_insytecommands"#]
+   [#inc insytecommands_edit.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table insytecommands edit -->
+ <!-- table insytecommands view --> 
+ [#if VIEW_MODE="view_insytecommands"#]
+   [#inc insytecommands_view.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table insytecommands view -->
+ [#endif DATA_SOURCE#]

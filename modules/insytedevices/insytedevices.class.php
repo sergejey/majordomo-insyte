@@ -353,6 +353,18 @@ class insytedevices extends module
                 $values = array_chunk($recData, 2);
                 $recData = array();
                 foreach ($values as $bytes) $recData[] = PhpType::bytes2unsignedInt($bytes, false);
+            } elseif ($command['response_convert']=='w2i_temp') {
+                $values = array_chunk($recData, 2);
+                $recData = array();
+                foreach ($values as $bytes) {
+                    $val = (PhpType::bytes2unsignedInt($bytes, false)-32767)/100;
+                    if ($val>(-256)) {
+                        $recData[]=$val;
+                    } else {
+                        $recData[]='';
+                    }
+
+                }
             } elseif ($command['response_convert'] == 's') {
                 //String
                 $recData = array(PhpType::bytes2string($recData));

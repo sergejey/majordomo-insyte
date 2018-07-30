@@ -10,8 +10,7 @@ $this->device_types = array(
                     'fread' => 3,
                     'fwrite' => 6,
                     'address' => 4,
-                    'count' => 2,
-                    'response_convert' => 'r2f'
+                    'response_convert' => 'w2i_temp'
                 ),
                 'controller_state' => array(
                     'fread' => 3,
@@ -353,7 +352,7 @@ $this->device_types = array(
             'temperature' => array(
                 'fread' => 3,
                 'address' => 1,
-                'response_convert' => 'i2i',
+                'response_convert' => 'w2i_temp',
                 'sdevice' => 'sensor_temp',
             ),
             '_config_address' => array(
